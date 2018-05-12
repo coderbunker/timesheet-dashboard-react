@@ -34,6 +34,12 @@ header {
   align-items: center;
 }
 
+.org-name { 
+  margin-left: 5%; 
+  color: #EAF3FA; 
+  font-size: 30px; 
+}
+
 .logo {
   height: 130px;
   margin-left: -58.1px;
@@ -60,6 +66,47 @@ header {
 
 }
 
+.first-mini-containers { 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+}
+
+.first-icon-containers { 
+  display: flex; 
+  justify-content: center; 
+}
+
+.first-words-containers { 
+  font-size: 12px;
+  font-weight: 500;
+  color: #003557; 
+  padding-top: 20px;
+}
+
+.first-numbers {
+  font-size: 52px;
+  font-weight: 500;
+  color: #003557;
+  display: flex;
+  align-items: flex-end;
+  line-height: 36px;
+  padding-left: 15px;
+}
+
+.icon {
+  height: 80px;
+}
+
+.divider {
+  height: 80%; 
+  width: 2px; 
+  background-color: #003557;
+}
+
+
+
+
 .second-block {
   width: 94%;
   height: 375px;
@@ -70,7 +117,31 @@ header {
   box-shadow: 3px 3px 6px rgba(0,0,0,0.16);
 }
 
+.second-mini-container {
+  margin-top: 110px;
+}
+
+.second-icon-container {
+}
+
+.icon-gray-yuan {
+  height: 80px;
+  margin-left: 20px
+}
+
+.second-number {
+  color: #EAF3FA;
+}
+
+.second-words-container {
+  color: #EAF3FA;
+}
+
 .third-block {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  justify-content: space-evenly;
   width: 95%;
   height: 205px;
   background: #EAF3FA;
@@ -78,6 +149,41 @@ header {
   margin-top: -40px;
   z-index: -3;
   box-shadow: 3px 3px 6px rgba(0,0,0,0.16);
+}
+
+.third-mini-containers {
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+}
+
+.third-icon-containers {
+  display: flex; 
+  justify-content: center; 
+}
+
+.third-numbers {
+  font-size: 52px;
+  font-weight: 500;
+  color: #003557;
+  display: flex;
+  align-items: flex-end;
+  line-height: 36px;
+  padding-left: 15px;
+}
+
+.third-words-containers { 
+  font-size: 12px;
+  font-weight: 500;
+  color: #003557; 
+  padding-top: 20px;
+}
+
+.third-divider {
+  height: 65%;
+  width: 2px;
+  background-color: #003557;
+  margin-top: 5%;
 }
 
 .last-block {
@@ -89,3 +195,21 @@ header {
   z-index: -4;
   box-shadow: 3px 3px 6px rgba(0,0,0,0.16);
 }
+
+.last-inner-container {
+  margin-top: 85px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.last-numbers {
+  color: #EAF3FA;
+}
+
+.last-words-containers {
+  color: #EAF3FA;
+}
+
+
+
