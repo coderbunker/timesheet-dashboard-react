@@ -63,7 +63,6 @@ header {
    align-items: center;
    flex-shrink: 0;
    justify-content: space-evenly;
-
 }
 
 .first-mini-containers { 
@@ -279,8 +278,77 @@ header {
   top: 15px;
 }
 
-
-
 .footer {
   height: 50px;
+}
+
+@media screen and (max-width: 425px) {
+
+  .container {
+    padding-top: 100px;
+  }
+
+  .icon {
+    height: 40px;
+  }
+
+  .icon-gray-yuan {
+    height: 55px;
+  }
+
+  .first-numbers {
+    font-size: 25px;
+  }
+
+  .second-number {
+    font-size: 30px;
+  }
+
+  .second-words-container {
+    font-size: 14px;
+  }
+
+  .third-numbers {
+    font-size: 25px;
+  }
+
+  header {
+    position: absolute;
+    left: 0;
+    width: 95vw;
+    display: flex;
+    margin-top: 10px;
+    justify-self: flex-start;
+  }
+
+  .logo {
+    height: 50px;
+    margin-left: -42.1px;
+    margin-top: -1.3px;
+  }
+
+  .logo-line {
+    width: 80%;
+    height: 50px;
+    background: #003557;
+    display: flex;
+    align-items: center;
+  }
+
+  .logo img {
+    height: 78px;
+  }
+
+  .org-name {
+    font-size: 20px;
+  }
+
+  .calendar-date {
+    bottom: 6px;
+    font-size: 25px;
+  }
+
+  .last-numbers {
+    font-size: 15px;
+  }
 }
