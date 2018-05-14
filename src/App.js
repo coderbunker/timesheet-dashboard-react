@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
+
 import Logo from './images/coderbunker-logo.svg';
 
 import User from './images/blue_singleUser.svg';
@@ -12,13 +15,38 @@ import CalendarClock from './images/blue_calendar:clock.svg';
 import GrayCalendar from './images/gray_calendar.svg';
 import GrayClock from './images/gray_clock.svg';
 
+const OrgQuery = gql  `
+{
+    allOrganizations {
+    edges {
+      node {
+        orgname
+        since
+        activity
+        activePeopleCount
+        peopleCount
+        projectCount
+        totalGross
+        lastRefresh
+        lastUpdate
+        totalEngMonths
+        ongoingProjectCount
+      }
+    }
+  }
+}
+` 
+
+    
+
 class App extends Component {
   render() {
+    console.log(this.props.data.allOrganizations);
     return (
       <div>
         <header>
           <div className="logo-line">
-            <div className="org-name">Coderbunker Shanghai</div>
+            <div className="org-name"></div>
           </div>
           <div className="logo">
             <img src={Logo} alt="" />
@@ -132,4 +160,13 @@ class App extends Component {
   }
 }
 
-export default App;
+
+var AppWithData = graphql(OrgQuery, {
+  options: {
+    variables: {
+      resource: "your mom"
+    }
+  }
+})(App);
+
+export default AppWithData;
