@@ -129,6 +129,24 @@ header {
 .second-icon-container {
 }
 
+.graph-container {
+  height: 175px;
+  display: flex;
+}
+
+.monthly-data-container {
+  border: 2px solid gold;
+  margin: 0 2px;
+}
+
+.month-name {
+  
+}
+
+.month-total {
+  background-color: #EAF3FA;
+}
+
 .icon-gray-yuan {
   height: 80px;
   margin-left: 20px

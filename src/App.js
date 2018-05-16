@@ -17,25 +17,42 @@ import GrayCalendar from './images/gray_calendar.svg';
 import GrayClock from './images/gray_clock.svg';
 
 const OrgQuery = gql`
-  {
-    allOrganizations {
-      edges {
-        node {
-          orgname
-          since
-          activity
-          activePeopleCount
-          peopleCount
-          projectCount
-          totalGross
-          lastRefresh
-          lastUpdate
-          totalEngMonths
-          ongoingProjectCount
-        }
+query{
+  allOrganizations {
+    edges {
+      node {
+        orgname
+        since
+        activity
+        peopleCount
+        projectCount
+        ongoingProjectCount
+        totalHours
+        totalGross
+        totalInvestment
+        activePeopleCount
+        totalEngMonths
+        lastRefresh
+        lastUpdate
       }
     }
   }
+  allMonthlyGrosses {
+    edges {
+      node {
+        entryYear
+        entryMonth
+        label
+        entryMonthName
+        total
+        currency
+        vendorName
+        lastRefresh
+        lastUpdate
+      }
+    }
+  }
+}
 `;
 const numberWithCommas = x => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
@@ -69,6 +86,9 @@ class App extends Component {
       return <div>There was an error</div>;
     }
 
+    const monthlyData = this.props.data.allMonthlyGrosses.edges;
+    console.log(monthlyData);
+
     const orgData = this.props.data.allOrganizations.edges[0].node;
     const {
       orgname,
@@ -86,6 +106,19 @@ class App extends Component {
     const sinceDate = moment(orgData.since).format('YYYY-MM-DD');
     const sinceDateDay = moment(orgData.since).format('DD');
     const since = this.dateDiff(orgData.since);
+
+    var bestMonth = 0;
+    var monthlyTotal = 0;
+
+    console.log(monthlyData);
+    const max = monthlyData.reduce(function(a, b) {
+     console.log(a,b);
+  });
+
+   // console.log("A-->",a,"B-->",b);
+      // return {total: Math.max(parseFloat(a.total), parseFloat(b.total)) } ;
+
+  console.log(max);
 
     return (
       <div>
@@ -142,6 +175,23 @@ class App extends Component {
                 <div className="second-number">{numberWithCommas(totalGross)}</div>
                 <div>Total Gross Billed(RMB)</div>
               </div>
+            </div>
+            <div className="graph-container">
+            {/* {console.log(monthlyData.edges)} */}
+            {/* {monthlyTotal = m.node.total} */}
+            {monthlyData.map((m) => {
+                if (m.node.total > bestMonth) {
+                  bestMonth = m.node.total;
+                }
+              // {console.log("monthlyTotal", monthlyTotal)}
+              // {console.log("best Month", bestMonth)}
+              return(
+                <div className="monthly-data-container" key={m.node.label}>
+                  {/* <div className="month-total" style={{height:(parseFloat(m.node.total)/max.total)*100}}>{m.node.total}</div> */}
+                  {/* <div className="month-name">{m.node.entryMonthName}</div> */}
+                </div>
+              )
+            })}
             </div>
           </div>
           {/* End Second Block */}
