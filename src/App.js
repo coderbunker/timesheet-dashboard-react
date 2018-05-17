@@ -54,6 +54,7 @@ query{
   }
 }
 `;
+
 const numberWithCommas = x => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
 class App extends Component {
@@ -107,18 +108,12 @@ class App extends Component {
     const sinceDateDay = moment(orgData.since).format('DD');
     const since = this.dateDiff(orgData.since);
 
-    var bestMonth = 0;
-    var monthlyTotal = 0;
-
-    console.log(monthlyData);
-    const max = monthlyData.reduce(function(a, b) {
-     console.log(a,b);
-  });
-
-   // console.log("A-->",a,"B-->",b);
-      // return {total: Math.max(parseFloat(a.total), parseFloat(b.total)) } ;
-
-  console.log(max);
+    const result = monthlyData.reduce ( (prev, next) => {
+      if ( prev.highestTotal > parseFloat(next.node.total)) {
+          return prev;
+      }
+      return { highestTotal: parseFloat(next.node.total)};
+  },{ highestTotal: 0 });
 
     return (
       <div>
@@ -177,18 +172,15 @@ class App extends Component {
               </div>
             </div>
             <div className="graph-container">
-            {/* {console.log(monthlyData.edges)} */}
-            {/* {monthlyTotal = m.node.total} */}
             {monthlyData.map((m) => {
-                if (m.node.total > bestMonth) {
-                  bestMonth = m.node.total;
-                }
-              // {console.log("monthlyTotal", monthlyTotal)}
-              // {console.log("best Month", bestMonth)}
+              // console.log(m.node.total)
+              // console.log(result.highestTotal)
               return(
                 <div className="monthly-data-container" key={m.node.label}>
-                  {/* <div className="month-total" style={{height:(parseFloat(m.node.total)/max.total)*100}}>{m.node.total}</div> */}
-                  {/* <div className="month-name">{m.node.entryMonthName}</div> */}
+                  {/* <div className="special"> */}
+                    <div className="month-total" style={{height:(parseFloat(m.node.total)/result.highestTotal)*100 + "%"}}></div>
+                    <div className="month-name">{m.node.entryMonthName}</div>
+                  {/* </div> */}
                 </div>
               )
             })}

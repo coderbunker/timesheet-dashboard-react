@@ -130,21 +130,28 @@ header {
 }
 
 .graph-container {
-  height: 175px;
+  height: 170px;
   display: flex;
+  justify-content: space-evenly;
+
 }
 
 .monthly-data-container {
-  border: 2px solid gold;
-  margin: 0 2px;
+  height: 160px;
+  align-self: baseline;
+}
+
+.special {
+
 }
 
 .month-name {
-  
+  color: #EAF3FA;
 }
 
 .month-total {
   background-color: #EAF3FA;
+  
 }
 
 .icon-gray-yuan {
