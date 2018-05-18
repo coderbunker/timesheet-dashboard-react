@@ -18,7 +18,7 @@ export default class RootContainer extends Component {
   render() {
     return (
       <ApolloProvider client={client}>
-        <App />
+        <App client={client} />
       </ApolloProvider>
     );
   }
