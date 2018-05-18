@@ -147,6 +147,7 @@ header {
 
 .month-name {
   color: #EAF3FA;
+  font-size: 20px;
 }
 
 .month-total {
@@ -328,6 +329,10 @@ header {
 
   .second-number {
     font-size: 30px;
+  }
+
+  .month-name {
+    font-size: 50%;
   }
 
   .second-words-container {

@@ -88,8 +88,10 @@ class App extends Component {
     }
 
     const monthlyData = this.props.data.allMonthlyGrosses.edges;
-    console.log(monthlyData);
+    const clone = [monthlyData];
+    const reversedMonthlyData = clone.reverse();
 
+    
     const orgData = this.props.data.allOrganizations.edges[0].node;
     const {
       orgname,
@@ -173,10 +175,10 @@ class App extends Component {
             </div>
             <div className="graph-container">
             {monthlyData.map((m) => {
-              // console.log(m.node.total)
+              // console.log(m)
               // console.log(result.highestTotal)
               return(
-                <div className="monthly-data-container" key={m.node.label}>
+                <div className="monthly-data-container">
                   {/* <div className="special"> */}
                     <div className="month-total" style={{height:(parseFloat(m.node.total)/result.highestTotal)*100 + "%"}}></div>
                     <div className="month-name">{m.node.entryMonthName}</div>
