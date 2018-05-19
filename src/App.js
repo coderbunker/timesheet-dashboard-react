@@ -23,6 +23,7 @@ class App extends Component {
     super(props);
     this.state = {
       backwardsMonthlyData: [],
+      backwardsMonthlyDataLength: Number,
       orgData: {},
       monthlyData: [],
       totalGrossWithCommas: "",
@@ -33,6 +34,8 @@ class App extends Component {
       sinceDateDay: "",
       since: ""
     };
+
+    // this.activate = this.activate.bind(this);
   }
 
   componentDidMount() {
@@ -60,6 +63,7 @@ class App extends Component {
         orgData,
         monthlyData,
         backwardsMonthlyData,
+        // backwardsMonthlyDataLength,
         totalGrossWithCommas,
         bestMonth,
         lastUpdate,
@@ -87,17 +91,32 @@ class App extends Component {
     return out.join(' ');
   };
 
+  activate = () => {
+    console.log("activate");
+  }
+
   render() {
     console.log(this.state);
-    const s = this.state;
-    const o = this.state.orgData;
-    // if (this.state.data && this.props.data.loading) {
-    //   return <div style={{ fontSize: '50px' }}>Loading. Please Wait...</div>;
-    // }
+    const {
+      totalGrossWithCommas,
+      backwardsMonthlyData,
+      // backwardsMonthlyDataLength,
+      since,
+      sinceDate,
+      bestMonth,
+      sinceDateDay,
+      lastUpdate,
+      lastUpdateDay,
+    } = this.state;
 
-    // if (this.props.data && this.props.data.error) {
-    //   return <div>There was an error</div>;
-    // }
+    const {
+      orgname,
+      activePeopleCount,
+      ongoingProjectCount,
+      peopleCount,
+      projectCount,
+      totalEngMonths,
+    } = this.state.orgData;
 
     return (
       <div>
@@ -105,7 +124,7 @@ class App extends Component {
         <header>
           <div className="logo-line">
             <div className="org-name">
-              {o.orgname}
+              {orgname}
             </div>
           </div>
           <div className="logo">
@@ -122,7 +141,7 @@ class App extends Component {
               <div className="first-icon-containers">
                 <img className="icon" src={User} alt="" />
                 <div className="first-numbers" style={{ paddingLeft: '5px' }}>
-                  {o.activePeopleCount}
+                  {activePeopleCount}
                 </div>
               </div>
               <div className="first-words-containers">Active freelancers</div>
@@ -132,7 +151,7 @@ class App extends Component {
               <div className="first-icon-containers">
                 <img className="icon" src={Chart} alt="" />
                 <div className="first-numbers">
-                  {o.ongoingProjectCount}
+                  {ongoingProjectCount}
                 </div>
               </div>
               <div className="first-words-containers">Ongoing projects count with billable hours</div>
@@ -142,7 +161,7 @@ class App extends Component {
               <div className="first-icon-containers">
                 <img className="icon" src={BlueYuan} alt="" />
                 <div className="first-numbers">
-                  
+                    {console.log(backwardsMonthlyData)}
                 </div>
               </div>
               <div className="first-words-containers">Ongoing projects gross</div>
@@ -158,18 +177,19 @@ class App extends Component {
               </div>
               <div className="second-words-container">
                 <div className="second-number">
-                  {s.totalGrossWithCommas}
+                  {totalGrossWithCommas}
                 </div>
                 <div>Total Gross Billed(RMB)</div>
               </div>
             </div>
             <div className="graph-container">
-              {this.state.backwardsMonthlyData.map(m => (
-                <div className="monthly-data-container">
+              {backwardsMonthlyData.map(m => (
+                
+                <div className="monthly-data-container" key={m.node.label} onClick={this.activate}>
                   
                   <div
                     className="month-total"
-                    style={{ height: `${parseFloat(m.node.total) / this.state.bestMonth * 100}%` }}
+                    style={{ height: `${parseFloat(m.node.total) / bestMonth * 100}%` }}
                   />
                   <div className="month-name">{m.node.entryMonthName}</div>
                   
@@ -185,7 +205,7 @@ class App extends Component {
               <div className="third-icon-containers">
                 <img className="icon" src={MultiUser} alt="" />
                 <div className="third-numbers">
-                  {o.peopleCount}
+                  {peopleCount}
                 </div>
               </div>
               <div className="third-words-containers">Freelancers with billable hours</div>
@@ -195,7 +215,7 @@ class App extends Component {
               <div className="third-icon-containers">
                 <img className="icon" src={Chart} alt="" />
                 <div className="third-numbers">
-                  {o.projectCount}
+                  {projectCount}
                 </div>
               </div>
               <div className="third-words-containers">Total Projects with billable hours</div>
@@ -205,7 +225,7 @@ class App extends Component {
               <div className="third-icon-containers">
                 <img className="icon" src={CalendarClock} alt="" />
                 <div className="third-numbers">
-                  {o.totalEngMonths}
+                  {totalEngMonths}
                 </div>
               </div>
               <div className="third-words-containers">Total engineering months</div>
@@ -221,11 +241,11 @@ class App extends Component {
                   <div className="last-icon-inner-container">
                     <img className="icon" src={GrayCalendar} alt="" />
                     <div className="calendar-date">
-                      {s.sinceDateDay}
+                      {sinceDateDay}
                     </div>
                   </div>
                   <div className="last-numbers">
-                    {s.sinceDate}
+                    {sinceDate}
                   </div>
                 </div>
                 <div className="last-words-containers">Data start date</div>
@@ -234,7 +254,7 @@ class App extends Component {
                 <div className="last-icon-containers">
                   <img className="icon" src={GrayClock} alt="" />
                   <div className="last-numbers">
-                    {s.since}
+                    {since}
                   </div>
                 </div>
                 <div className="last-words-containers">Elapsed since first billable hour</div>
@@ -245,12 +265,12 @@ class App extends Component {
                     <img className="icon" src={GrayCalendar} alt="" />
                     
                     <div className="calendar-date">
-                      {s.lastUpdateDay}
+                      {lastUpdateDay}
                     </div>
                   </div>
                   
                   <div className="last-numbers">
-                    {s.lastUpdate}
+                    {lastUpdate}
                   </div>
                 </div>
                 <div className="last-words-containers">Data last updated</div>
