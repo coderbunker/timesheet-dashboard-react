@@ -23,6 +23,8 @@ class App extends Component {
     super(props);
     this.state = {
       backwardsMonthlyData: [],
+      lastTwelveMonthsData: [],
+      currentMonthGross: [],
       backwardsMonthlyDataLength: Number,
       orgData: {},
       monthlyData: [],
@@ -53,6 +55,9 @@ class App extends Component {
       const orgData = allOrganizations.data.allOrganizations.edges[0].node;
       const totalGrossWithCommas = numberWithCommas(orgData.totalGross);
       const backwardsMonthlyData = [...monthlyData].reverse();
+      const currentMonthNode = backwardsMonthlyData.slice(-1);
+      const currentMonthGross = currentMonthNode[0].node.total.replace(/(\.\d+)+/,'');
+      const lastTwelveMonthsData = backwardsMonthlyData.slice(-12);
       const bestMonth = Math.max(...monthlyData.map(i => i.node.total));
       const lastUpdate = moment(orgData.lastUpdate).format('YYYY-MM-DD');
       const lastUpdateDay = moment(orgData.lastUpdate).format('DD');
@@ -62,9 +67,9 @@ class App extends Component {
       this.setState({
         orgData,
         monthlyData,
-        backwardsMonthlyData,
-        // backwardsMonthlyDataLength,
+        lastTwelveMonthsData,
         totalGrossWithCommas,
+        currentMonthGross,
         bestMonth,
         lastUpdate,
         lastUpdateDay,
@@ -91,16 +96,12 @@ class App extends Component {
     return out.join(' ');
   };
 
-  activate = () => {
-    console.log("activate");
-  }
-
   render() {
     console.log(this.state);
     const {
+      currentMonthGross,
       totalGrossWithCommas,
-      backwardsMonthlyData,
-      // backwardsMonthlyDataLength,
+      lastTwelveMonthsData,
       since,
       sinceDate,
       bestMonth,
@@ -140,7 +141,7 @@ class App extends Component {
             <div className="first-mini-containers">
               <div className="first-icon-containers">
                 <img className="icon" src={User} alt="" />
-                <div className="first-numbers" style={{ paddingLeft: '5px' }}>
+                <div className="first-numbers">
                   {activePeopleCount}
                 </div>
               </div>
@@ -154,18 +155,19 @@ class App extends Component {
                   {ongoingProjectCount}
                 </div>
               </div>
-              <div className="first-words-containers">Ongoing projects count with billable hours</div>
+              <div className="first-words-containers">Ongoing projects with billable hours</div>
             </div>
             <div className="divider" />
             <div className="first-mini-containers">
               <div className="first-icon-containers">
                 <img className="icon" src={BlueYuan} alt="" />
                 <div className="first-numbers">
-                    {console.log(backwardsMonthlyData)}
+                    {currentMonthGross}
                 </div>
               </div>
-              <div className="first-words-containers">Ongoing projects gross</div>
+              <div className="first-words-containers">Current Month Gross</div>
             </div>
+            <div className="pointer" />
           </div>
           {/* End First Block */}
 
@@ -183,21 +185,25 @@ class App extends Component {
               </div>
             </div>
             <div className="graph-container">
-              {backwardsMonthlyData.map(m => (
+              {lastTwelveMonthsData.map(m => (
+                <div 
+                  className="monthly-data-container"
+                  key={m.node.label}
+                >
                 
-                <div className="monthly-data-container" key={m.node.label} onClick={this.activate}>
-                  
                   <div
                     className="month-total"
                     style={{ height: `${parseFloat(m.node.total) / bestMonth * 100}%` }}
                   />
                   <div className="month-name">{m.node.entryMonthName}</div>
-                  
                 </div>
               ))}
             </div>
           </div>
           {/* End Second Block */}
+                  
+                  
+            
 
           {/* Begin Third Block */}
           <div className="third-block">

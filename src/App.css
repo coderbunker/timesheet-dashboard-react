@@ -55,6 +55,7 @@ header {
    background-color: #EAF3FA;
    position: relative;
    width: 95%;
+   z-index: 3;
    margin-right: 2%;
    height: 145px;
    box-shadow: 3px 3px 6px rgba(0,0,0,0.16);
@@ -90,7 +91,7 @@ header {
   display: flex;
   align-items: flex-end;
   line-height: 36px;
-  padding-left: 15px;
+  padding-left: 20px;
 }
 
 /* .first-numbers:first-of-type {
@@ -107,6 +108,20 @@ header {
   background-color: #003557;
 }
 
+.pointer {
+  background-color: #EAF3FA;
+  z-index: -1;
+  width: 40px;
+  position: absolute;
+  height: 40px;
+  bottom: -20px;
+  right: 25px;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  box-shadow: 3px 3px 6px rgba(0,0,0,0.16);
+}
+
 
 
 
@@ -115,8 +130,9 @@ header {
   height: 375px;
   background: #5C6477;
   margin-left: 2%;
+  padding-bottom: 5px;
   margin-top: -90px;
-  z-index: -2;
+  z-index: 2;
   box-shadow: 3px 3px 6px rgba(0,0,0,0.16);
 }
 
@@ -124,9 +140,6 @@ header {
   padding-top: 110px;
   display: flex;
   flex-direction: row;
-}
-
-.second-icon-container {
 }
 
 .graph-container {
@@ -141,9 +154,11 @@ header {
   align-self: baseline;
 }
 
-.special {
-
-}
+/* .monthly-data-container-active {
+  background-color: #4a4a4a;
+  height: 160px;
+  align-self: baseline;
+} */
 
 .month-name {
   color: #EAF3FA;
@@ -152,7 +167,10 @@ header {
 
 .month-total {
   background-color: #EAF3FA;
-  
+}
+
+.month-total-active {
+  background-color: rgb(2, 110, 218);
 }
 
 .icon-gray-yuan {
@@ -187,7 +205,7 @@ header {
   background: #EAF3FA;
   margin-right: 2%;
   margin-top: -40px;
-  z-index: -3;
+  z-index: 1;
   box-shadow: 3px 3px 6px rgba(0,0,0,0.16);
 }
 
@@ -233,7 +251,7 @@ header {
   background: #5C6477;
   margin-left: 2%;
   margin-top: -65px;
-  z-index: -4;
+  z-index: 0;
   box-shadow: 3px 3px 6px rgba(0,0,0,0.16);
 }
 
@@ -325,10 +343,34 @@ header {
 
   .first-numbers {
     font-size: 25px;
+    /* padding-left: 0px; */
+    margin-left: -14px;
+  }
+
+  .first-icon-containers, .third-icon-containers {
+    flex-direction: column;      
+  }
+
+  .pointer {
+    width: 25px;
+    height: 25px;
+    bottom: -10px;
+    right: 5px;
+  }
+   
+  .second-block {
+    padding-bottom: 0px;
   }
 
   .second-number {
     font-size: 30px;
+  }
+
+  .first-words-containers, .third-words-containers {
+    padding-top: 0px;
+    text-align: center;
+    width: 80%;
+    /* display: none; */
   }
 
   .month-name {
@@ -341,6 +383,8 @@ header {
 
   .third-numbers {
     font-size: 25px;
+    padding-left: 0px;
+    margin-left: 6px;
   }
 
   header {
