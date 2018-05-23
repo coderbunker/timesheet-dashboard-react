@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment';
+import MediaQuery from 'react-responsive';
 
 // YOU CAN PUT ALL THE GRAPHQL QUERIES IN ONE PLACE SO YOU CAN EASILY IMPORT THEM IN ANY COMPONENT
 import { _allMonthlyGrosses, _allOrganizations } from './queries';
@@ -29,6 +30,7 @@ class App extends Component {
       orgData: {},
       monthlyData: [],
       totalGrossWithCommas: "",
+      currentMonthGrossWithCommas: "",
       bestMonth: Number,
       lastUpdate: "",
       lastUpdateDay: "",
@@ -57,6 +59,7 @@ class App extends Component {
       const backwardsMonthlyData = [...monthlyData].reverse();
       const currentMonthNode = backwardsMonthlyData.slice(-1);
       const currentMonthGross = currentMonthNode[0].node.total.replace(/(\.\d+)+/,'');
+      const currentMonthGrossWithCommas = numberWithCommas(currentMonthGross);
       const lastTwelveMonthsData = backwardsMonthlyData.slice(-12);
       const bestMonth = Math.max(...monthlyData.map(i => i.node.total));
       const lastUpdate = moment(orgData.lastUpdate).format('YYYY-MM-DD');
@@ -69,7 +72,7 @@ class App extends Component {
         monthlyData,
         lastTwelveMonthsData,
         totalGrossWithCommas,
-        currentMonthGross,
+        currentMonthGrossWithCommas,
         bestMonth,
         lastUpdate,
         lastUpdateDay,
@@ -99,7 +102,7 @@ class App extends Component {
   render() {
     console.log(this.state);
     const {
-      currentMonthGross,
+      currentMonthGrossWithCommas,
       totalGrossWithCommas,
       lastTwelveMonthsData,
       since,
@@ -155,17 +158,26 @@ class App extends Component {
                   {ongoingProjectCount}
                 </div>
               </div>
-              <div className="first-words-containers">Ongoing projects with billable hours</div>
+              <div className="first-words-containers">
+                <MediaQuery minDeviceWidth={425}>
+                  {matches => matches ? 'Ongoing projects with billable hours' : 'Current Projects'}
+                </MediaQuery>
+              </div>
             </div>
             <div className="divider" />
             <div className="first-mini-containers">
               <div className="first-icon-containers">
                 <img className="icon" src={BlueYuan} alt="" />
                 <div className="first-numbers">
-                    {currentMonthGross}
+                    {currentMonthGrossWithCommas}
                 </div>
               </div>
-              <div className="first-words-containers">Current Month Gross</div>
+              <div className="first-words-containers">
+                <MediaQuery minDeviceWidth={425}>
+                  {matches => matches ? 'Current Month Gross' : 'Current Month'}
+                </MediaQuery>
+                (RMB)
+              </div>
             </div>
             <div className="pointer" />
           </div>
@@ -214,7 +226,11 @@ class App extends Component {
                   {peopleCount}
                 </div>
               </div>
-              <div className="third-words-containers">Freelancers with billable hours</div>
+              <div className="third-words-containers">
+                <MediaQuery minDeviceWidth={425}>
+                  {matches => matches ? 'Freelancers with billable hours' : 'Total Freelancers'}
+                </MediaQuery>
+              </div>
             </div>
             <div className="third-divider" />
             <div className="third-mini-containers">
@@ -224,7 +240,11 @@ class App extends Component {
                   {projectCount}
                 </div>
               </div>
-              <div className="third-words-containers">Total Projects with billable hours</div>
+              <div className="third-words-containers">
+                <MediaQuery minDeviceWidth={425}>
+                  {matches => matches ? 'Total Projects with billable hours' : 'Total projects'}
+                </MediaQuery>
+              </div>
             </div>
             <div className="third-divider" />
             <div className="third-mini-containers">
@@ -234,7 +254,11 @@ class App extends Component {
                   {totalEngMonths}
                 </div>
               </div>
-              <div className="third-words-containers">Total engineering months</div>
+              <div className="third-words-containers">
+                <MediaQuery minDeviceWidth={425}>
+                  {matches => matches ? 'Total engineering months' : 'Total months'}
+                </MediaQuery>
+              </div>
             </div>
           </div>
           {/* End Third Block */}

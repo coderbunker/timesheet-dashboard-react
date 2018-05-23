@@ -111,11 +111,11 @@ header {
 .pointer {
   background-color: #EAF3FA;
   z-index: -1;
-  width: 40px;
+  width: 35px;
   position: absolute;
-  height: 40px;
-  bottom: -20px;
-  right: 25px;
+  height: 35px;
+  bottom: -17px;
+  right: 8px;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
@@ -152,6 +152,8 @@ header {
 .monthly-data-container {
   height: 160px;
   align-self: baseline;
+  flex: 1;
+  padding: 0 1.5%;
 }
 
 /* .monthly-data-container-active {
@@ -163,6 +165,7 @@ header {
 .month-name {
   color: #EAF3FA;
   font-size: 20px;
+  text-align: center;
 }
 
 .month-total {
@@ -333,6 +336,10 @@ header {
     padding-top: 100px;
   }
 
+  .first-block {
+    height: 130px;
+  }
+
   .icon {
     height: 40px;
   }
@@ -347,19 +354,16 @@ header {
     margin-left: -14px;
   }
 
-  .first-icon-containers, .third-icon-containers {
-    flex-direction: column;      
-  }
-
   .pointer {
-    width: 25px;
-    height: 25px;
-    bottom: -10px;
-    right: 5px;
+    width: 20px;
+    height: 20px;
+    bottom: -8px;
+    right: 4px;
   }
    
   .second-block {
     padding-bottom: 0px;
+    height: 350px;
   }
 
   .second-number {
@@ -368,6 +372,7 @@ header {
 
   .first-words-containers, .third-words-containers {
     padding-top: 0px;
+    margin-top: 15px;
     text-align: center;
     width: 80%;
     /* display: none; */
@@ -381,10 +386,18 @@ header {
     font-size: 14px;
   }
 
+  .third-block {
+    height: 175px;
+  }
+
   .third-numbers {
     font-size: 25px;
     padding-left: 0px;
-    margin-left: 6px;
+    margin-left: 10px;
+  }
+
+  .third-divider {
+    margin-top: 10%;
   }
 
   header {
@@ -416,6 +429,10 @@ header {
 
   .org-name {
     font-size: 20px;
+  }
+
+  .last-block {
+    height: 275px;
   }
 
   .calendar-date {
