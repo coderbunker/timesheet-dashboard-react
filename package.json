@@ -1,11 +1,13 @@
 {
   "name": "dashboard",
   "version": "0.1.0",
+  "homepage": "https://coderbunker.github.io/timesheet-dashboard-react",
   "private": true,
   "dependencies": {
     "apollo-cache-inmemory": "^1.2.1",
     "apollo-client": "^2.3.1",
     "apollo-link-http": "^1.5.4",
+    "gh-pages": "^1.1.0",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.2",
     "moment": "^2.22.1",
@@ -18,6 +20,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },

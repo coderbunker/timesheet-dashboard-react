@@ -5,7 +5,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import gql from 'graphql-tag';
 
 const client = new ApolloClient({
-  link: new HttpLink({ uri: 'http://data.coderbunker.com/graphql' }),
+  link: new HttpLink({ uri: 'https://data.coderbunker.com/graphql' }),
   cache: new InMemoryCache(),
 });
 
