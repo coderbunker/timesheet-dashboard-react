@@ -1,7 +1,7 @@
 {
   "name": "dashboard",
   "version": "0.1.0",
-  "homepage": "https://coderbunker.github.io/timesheet-dashboard-react",
+  "homepage": "https://dashboard.coderbunker.com",
   "private": true,
   "dependencies": {
     "apollo-cache-inmemory": "^1.2.1",
