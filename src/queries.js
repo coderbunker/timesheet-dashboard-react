@@ -41,22 +41,23 @@ export const _allOrganizations = () =>
 export const _allMonthlyGrosses = () =>
   client.query({
     query: gql`
-      query {
-        allMonthlyGrosses {
-          edges {
-            node {
-              entryYear
-              entryMonth
-              label
-              entryMonthName
-              total
-              currency
-              vendorName
-              lastRefresh
-              lastUpdate
-            }
+    query {
+      allMonthlyGrosses(orderBy: [ENTRY_YEAR_DESC, ENTRY_MONTH_DESC]) {
+        edges {
+          node {
+            entryYear
+            entryMonth
+            label
+            entryMonthName
+            total
+            currency
+            vendorName
+            lastRefresh
+            lastUpdate
           }
         }
       }
+    }
     `,
   });
+        
